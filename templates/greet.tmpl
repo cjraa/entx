@@ -1,0 +1,17 @@
+{{/* gotype: entgo.io/ent/entc/gen.Graph */}}
+
+{{ define "greet" }}
+
+    {{/* Add the base header for the generated file */}}
+    {{ $pkg := base $.Config.Package }}
+    {{ template "header" $ }}
+
+    {{/* Loop over all nodes and add the Greet method */}}
+    {{ range $n := $.Nodes }}
+        {{ $receiver := $n.Receiver }}
+        func ({{ $receiver }} *{{ $n.Name }}) Greet() string {
+        return "Hello, {{ $n.Name }}"
+        }
+    {{ end }}
+
+{{ end }}
